@@ -13,4 +13,5 @@ package object dtable {
   def twirlMarshaller[A](contentType: MediaType): ToEntityMarshaller[A] = {
     Marshaller.StringMarshaller.wrap(contentType)(_.toString)
   }
+
 }

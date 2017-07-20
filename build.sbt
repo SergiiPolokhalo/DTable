@@ -8,7 +8,13 @@ lazy val server = (project in file("server")).settings(
   compile in Compile := ((compile in Compile) dependsOn scalaJSPipeline).value,
   libraryDependencies ++= Seq(
     "com.typesafe.akka" %% "akka-http" % "10.0.7",
-    "com.vmunier" %% "scalajs-scripts" % "1.1.0"
+    "com.vmunier" %% "scalajs-scripts" % "1.1.0",
+    "com.typesafe.akka" %% "akka-http-spray-json" % "10.0.9",
+    "org.xerial" % "sqlite-jdbc" % "3.19.3",
+    "com.typesafe.slick" %% "slick" % "3.2.0",
+    "org.slf4j" % "slf4j-nop" % "1.6.4",
+    "com.typesafe.slick" %% "slick-hikaricp" % "3.2.0"
+
   ),
   WebKeys.packagePrefix in Assets := "public/",
   managedClasspath in Runtime += (packageBin in Assets).value,

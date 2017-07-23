@@ -13,9 +13,11 @@ class WebService() extends Directives {
       } ~
       path("user") {
         val dblayer =  new DBLayer()
-        println(dblayer.all())
-        complete(dtable.html.user.render("username"))
+        complete(dtable.html.user.render(dblayer.all()))
       } ~
+//      path("user" / IntNumber) {
+//        complete(HttpResponse(User(Some(1),"2","3")))
+//      } ~
       path("BOOM") {
         complete("Boooom!!!")
       }

@@ -5,7 +5,7 @@ package shared.model
 sealed trait GameBox
 
 // This is user objects
-case class User(name: String)
+case class User(id:Option[Int], first: String, last:String)
 
 case class Account(user: User)
 

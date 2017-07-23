@@ -1,7 +1,11 @@
-@(user: String)
-@main("User") {
-<h2>User</h2>
+@import shared.model.User
+
+@(users: Seq[User])
+@main("Users") {
+<h2>Users</h2>
 <ul>
-    <li>User: <em>@user</em></li>
+    @for(u <- users) {
+    <li>User: <em>@u</em></li>
+    }
 </ul>
 }

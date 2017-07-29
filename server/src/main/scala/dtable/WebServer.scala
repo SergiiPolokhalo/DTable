@@ -6,8 +6,7 @@ import akka.stream.ActorMaterializer
 import com.typesafe.config.ConfigFactory
 import scala.io.StdIn
 
-object WebServer {
-  def main(args: Array[String]) {
+object WebServer extends  App {
     implicit val system = ActorSystem("server-system")
     implicit val materializer = ActorMaterializer()
     implicit val executionContext = system.dispatcher
@@ -27,5 +26,4 @@ object WebServer {
     bindingFuture
       .flatMap(_.unbind()) // trigger unbinding from the port
       .onComplete(_ => system.terminate()) // and shutdown when done
-  }
 }

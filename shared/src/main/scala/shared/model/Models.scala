@@ -5,9 +5,10 @@ package shared.model
 sealed trait GameBox
 
 // This is user objects
-case class User(id:Option[Int], first: String, last:String)
+//password contain hashcode of real password
+case class User(id:Option[Int], first: String, last:String, login:String, password:String)
 
-case class Account(user: User)
+case class Account(user: User, token:String, active:Boolean)
 
 //This is Game objects
 case class GameRule()

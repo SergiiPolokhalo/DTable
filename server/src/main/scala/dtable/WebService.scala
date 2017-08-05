@@ -8,7 +8,7 @@ import shared.model.User
 import spray.json.DefaultJsonProtocol
 
 trait Jsonizated extends DefaultJsonProtocol {
-  implicit val userJson = jsonFormat3(User.apply)
+  implicit val userJson = jsonFormat5(User.apply)
 }
 class WebService() extends Directives with Jsonizated {
 
@@ -19,10 +19,10 @@ class WebService() extends Directives with Jsonizated {
         complete(dtable.html.index.render(SharedMessages.itWorks))
       } ~
       path("user") {
-        complete(dtable.html.user.render(dblayer.all()))
+        complete(dtable.html.user.render(dblayer.users.all()))
       } ~
       path("user" / IntNumber) { id =>
-        val u = dblayer.userById(id)
+        val u = dblayer.users.userById(id)
         complete(u)
       } ~
       path("BOOM") {

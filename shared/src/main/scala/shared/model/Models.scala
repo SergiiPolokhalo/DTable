@@ -8,7 +8,7 @@ sealed trait GameBox
 //password contain hashcode of real password
 case class User(id:Option[Int], first: String, last:String, login:String, password:String)
 
-case class Account(user: User, token:String, active:Boolean)
+case class Account(user: Int, token:String, active:Boolean)
 
 //This is Game objects
 case class GameRule()

@@ -2,7 +2,7 @@ package dtable.dblayer
 
 import shared.model.User
 
-class UserDB {
+object UserDB {
   import slick.jdbc.SQLiteProfile.api._
 
   class Users(tag: Tag) extends Table[User](tag, "users") {
@@ -20,13 +20,15 @@ class UserDB {
 
     def password = column[String]("password")
   }
-  private[this] val users = TableQuery[Users]
+  val users = TableQuery[Users]
 
   def userById(id: Int) = {
-    call(users.filter(_.id === id))
+    val query=users.filter(_.id === id)
+    call(query)
   }
 
   def all() = {
-    call(users.filter(u => u.id >= 1))
+    val query=users.filter(u => u.id >= 1)
+    call(query)
   }
 }

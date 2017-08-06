@@ -12,6 +12,7 @@ trait Jsonizated extends DefaultJsonProtocol {
 }
 class WebService() extends Directives with Jsonizated {
 
+  import dtable.dblayer._
   val dblayer =  DBLayer
   val route =
     get {
@@ -19,12 +20,18 @@ class WebService() extends Directives with Jsonizated {
         complete(dtable.html.index.render(SharedMessages.itWorks))
       } ~
       path("user") {
-        complete(dtable.html.user.render(dblayer.users.all()))
+        //complete(dtable.html.user.render(dblayer.users.all()))
+        val u = dblayer.userDb.all()
+        complete(dtable.html.user.render(u))
       } ~
       path("user" / IntNumber) { id =>
-        val u = dblayer.users.userById(id)
-        complete(u)
+        val u = dblayer.userDb.userById(id)
+        complete(u.head)
       } ~
+      path("accounts") {
+        val u = dblayer.accountDb.all()
+        complete(dtable.html.index(u.toString))
+      }~
       path("BOOM") {
         complete("Boooom!!!")
       }
